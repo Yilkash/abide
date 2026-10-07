@@ -14,6 +14,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 - No backend. Data lives in `localStorage` under `abide.*`:
   - `settings`: `{name, font, times:[6,13,20], fastDays:[3,5], fastStart:6, fastEnd:15}`.
   - `read`: chapter numbers 0–1188.
+  - `pre`: chapters already read when the plan was (re)started via Settings → "Mark everything up to here". `onTrack()` measures pace from there.
   - `days`: date → `{parts:[[…],[…],[…]]}`, today's reading, fixed once the day starts.
   - `log`: date → chapters read that day, used for the streak.
   - `fasts`: date → `{done, focus, note}`.
@@ -34,6 +35,11 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - stop at 4,800 calls a month.
 - **Not cached by the service worker:** `sw.js` never caches `*.api.bible`.
 - **Fallback:** the KJV is used whenever the NIV isn't connected or a chapter isn't cached and there's no data.
+
+## Meditation
+
+- The `Meditation` theme (30 verses, verified against the KJV) supplies "Meditate today" on the Today screen (`meditationOfDay`).
+- The `meditate` view guides 5 steps, offers a 5-minute timer, and saves notes to the journal. It works on any themed verse.
 
 ## Reading plan
 
