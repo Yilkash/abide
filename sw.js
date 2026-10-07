@@ -1,6 +1,6 @@
 // Keeps Abide working with no network: serve the saved copy, refresh it when online.
 // Bump together with APP_VERSION in index.html.
-const CACHE = "abide-v4";
+const CACHE = "abide-v5";
 const FILES = ["./", "index.html", "kjv.json", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES))); self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
