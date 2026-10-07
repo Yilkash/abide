@@ -1,0 +1,14 @@
+{
+  "name": "Abide — Word, prayer & fasting",
+  "short_name": "Abide",
+  "description": "Read the Bible from Genesis to Revelation, healing scriptures, fasting, prayer and messages.",
+  "start_url": "./#today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f4fb",
+  "theme_color": "#3d2c8d",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
