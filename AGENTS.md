@@ -18,6 +18,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - `days`: date → `{parts:[[…],[…],[…]]}`, today's reading, fixed once the day starts.
   - `log`: date → chapters read that day, used for the streak.
   - `fasts`: date → `{done, focus, note}`.
+  - `dreams`: `[{id, date, title, text, feelings[], tags[], meaning, scripture, status: new|praying|fulfilled, fulfilledAt, fulfilledNote, created, updated}]`. Empty dreams are dropped when leaving the editor.
   - `prayers`, `journal`, `lessons`, `favs`, `saved`, `start`, `theme`, `tab`.
   - Backup/restore in Settings exports and imports these keys as JSON.
 - **Never rename or reshape these keys without a migration.** They hold real progress.
@@ -40,6 +41,13 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 
 - The `Meditation` theme (30 verses, verified against the KJV) supplies "Meditate today" on the Today screen (`meditationOfDay`).
 - The `meditate` view guides 5 steps, offers a 5-minute timer, and saves notes to the journal. It works on any themed verse.
+
+## Dreams
+
+- **Where:** More → Dreams, plus a "Had a dream last night?" card on Today before 10am. A new dream's date defaults to the previous night when created before noon.
+- **Voice typing:** uses the browser's `SpeechRecognition` (Chrome sends audio to Google; the UI says so).
+- **List:** recurring symbols come from tags used more than once. Search covers title, text, meaning, scripture and tags.
+- **Scriptures:** the `Dreams & visions` theme (18 verses, verified against the KJV).
 
 ## Reading plan
 
