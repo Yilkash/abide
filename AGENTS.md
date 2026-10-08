@@ -59,7 +59,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 - Confirmations use `ask()`. Never use `confirm()` or `alert()`.
 - Messages are YouTube **search** links. Never invent video IDs.
 - Tests for the NIV use a mock of api.bible (same paths and response shapes). Before claiming the live NIV works, check it with the owner's real key via Settings → Test NIV connection.
-- Reminders: there are no calendar events. Earlier ones were created on a connected Google account that is not the owner's and were deleted on 2026-10-08. Never write to connected Google accounts; any reminder feature must let the owner choose their own calendar (e.g. an .ics download).
+- Reminders: Settings → Reminders → "Add reminders to my calendar" downloads `abide-reminders.ics` (built by `buildReminders()`: floating local times, fixed UIDs `abide-morning/afternoon/night/fast@yilkash.github.io` with a rising SEQUENCE so re-importing updates rather than duplicates, ends at PLAN_END). The owner opens it and picks their own calendar. Never write to any connected Google account on their behalf (an earlier mistake did; those events were deleted on 2026-10-08).
 - The owner wants a plan described before anything new is built.
 
 ## Deploy and test

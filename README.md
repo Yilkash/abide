@@ -15,6 +15,7 @@ Live: https://yilkash.github.io/abide/
 - **Scriptures:** verses to read out loud, meditate on and save, under healing, meditation, faith, power and authority, the Spirit and the spirit realm, the Kingdom of God, creation, prayer and fasting, putting God first, and teaching the Word.
 - **Messages:** a message of the day, topics, and men of God (Benson Idahosa, Andrew Wommack, Apostle Joshua Selman, Rick Warren, Kenneth E. Hagin, T.L. Osborn, Reinhard Bonnke, Smith Wigglesworth) via YouTube, plus the messages that blessed you.
 - **Dreams:** a private dream journal (voice typing, feelings, people and symbols, meaning, scripture, "came to pass"), with search and recurring symbols.
+- **Reminders:** Settings → "Add reminders to my calendar" gives a calendar file you add to the calendar you choose.
 - **More:**
   - Fasting: Wednesday and Friday, 6am–3pm, with a focus and notes for each fast.
   - Prayer list, with answered prayers.
