@@ -4,12 +4,17 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 
 ## Shape
 
-- Files:
-  - `index.html`: the whole app, with inline CSS and JS, no build step.
+- Files (no build step; edit and push):
+  - `index.html`: the page shell (header, tab bar, sheets) and the `<script>` tags in load order.
+  - `css/app.css`: all the styles.
+  - `js/`: the core, loaded first: `core.js` (version, storage helpers, all saved state), `data.js` (book names and themed verses), `icons.js`, `bible.js` (KJV loading), `niv.js`, `plan.js` (reading plan), `ui.js` (toast, ask, sheet), `router.js` (`go`, `render`, the empty `VIEWS`), `reminders.js`, `backup.js`, `shell.js` (theme, font, install, update check), and `main.js` (start-up, loaded last).
+  - `js/features/`: one file per section. Each holds its helpers and adds its screens with `Object.assign(VIEWS, { … })`.
+  - These are plain scripts, not ES modules. They share one global scope, so a name declared in one file is visible to the others (the HTML `onclick`s rely on this). Never declare the same top-level name twice, and keep the load order: a file may only use another file's names at load time if that file comes earlier.
+  - **A new file must be added to `index.html` and to `FILES` in `sw.js`**, or the app breaks offline.
   - `kjv.json`: the full KJV as `[book][chapter][verse]` (66 books, 1,189 chapters, 31,102 verses; public domain).
   - `sw.js`: offline. Network-first, except `kjv.json`, which is cache-first.
   - `manifest.webmanifest`, `icon-192.png`, `icon-512.png`.
-- The themed scripture lists are inlined in `index.html` as `DATA` (book names plus `themes`). Each verse's text was taken from `kjv.json`, and every reference was checked to exist. If you add a verse, generate its text from `kjv.json`; never type scripture by hand.
+- The themed scripture lists are in `js/data.js` as `DATA` (book names plus `themes`). Each verse's text was taken from `kjv.json`, and every reference was checked to exist. If you add a verse, generate its text from `kjv.json`; never type scripture by hand.
 - Hosted on GitHub Pages from `main` of `Yilkash/abide`.
 - No backend. Data lives in `localStorage` under `abide.*`:
   - `settings`: `{name, font, times:[6,13,20], fastDays:[3,5], fastStart:6, fastEnd:15}`.
@@ -81,7 +86,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 
 ## Rules
 
-- **On every deploy, bump `CACHE` in `sw.js` and `APP_VERSION` in `index.html` together.** The update banner compares them.
+- **On every deploy, bump `CACHE` in `sw.js` and `APP_VERSION` in `js/core.js` together.** The update banner compares them.
 - Confirmations use `ask()`. Never use `confirm()` or `alert()`.
 - Messages are YouTube **search** links. Never invent video IDs.
 - Tests for the NIV use a mock of api.bible (same paths and response shapes). Before claiming the live NIV works, check it with the owner's real key via Settings → Test NIV connection.
