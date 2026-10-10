@@ -20,6 +20,8 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - `fasts`: date → `{done, focus, note}`.
   - `dreams`: `[{id, date, title, text, feelings[], tags[], meaning, scripture, status: new|praying|fulfilled, fulfilledAt, fulfilledNote, created, updated}]`. Empty dreams are dropped when leaving the editor.
   - `prayers`, `journal`, `lessons`, `favs`, `saved`, `start`, `theme`, `tab`.
+  - `declared`: date → refs of the healing declarations spoken that day ("Speak it").
+  - `lock`: `{salt, hash, hint}` for the optional PIN (SHA-256 of salt + PIN). **Never** included in backups.
   - Backup/restore in Settings exports and imports these keys as JSON.
 - **Never rename or reshape these keys without a migration.** They hold real progress.
 
@@ -36,6 +38,21 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - stop at 4,800 calls a month.
 - **Not cached by the service worker:** `sw.js` never caches `*.api.bible`.
 - **Fallback:** the KJV is used whenever the NIV isn't connected or a chapter isn't cached and there's no data.
+
+## Speak it (v8)
+
+- `DECLARATIONS` pairs a first-person declaration (our wording) with a verse from the verified `Healing` theme, looked up by ref, so scripture text is never typed by hand. If a ref is missing from the theme, that declaration is dropped.
+- The `declare` view: today's declaration (rotates by day), read aloud with `speechSynthesis` (declaration, then the verse), "I declared it", a streak, and the full list. Today shows it under the round shortcuts.
+
+## PIN lock (v8)
+
+- Optional, set in Settings → Privacy. It locks `PRIVATE` = prayer list, journal and dreams; `render()` sends those views to the `lock` view until the PIN is entered. The Today screen hides prayer names while locked.
+- It relocks after 2 minutes in the background or on reload. Five wrong tries wait 30 seconds. "Forgot PIN?" shows the hint, then offers to remove the lock **and delete** the private pages.
+- It keeps a casual look away; it is not encryption (localStorage is readable with developer tools).
+
+## Look (v8)
+
+- Plus Jakarta Sans for the interface, Lora for scripture. Today's top is a small app icon plus the greeting (no big title), then round shortcuts: Read (today's next chapter), Speak it, Pray, Journal.
 
 ## Meditation
 
@@ -72,4 +89,6 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - scripture save and open in context;
   - prayer, journal and lesson;
   - reload persistence;
-  - the full-plan simulation finishes 1189/1189.
+  - the full-plan simulation finishes 1189/1189;
+  - Speak it (read aloud with a mocked `speechSynthesis`, declare, streak);
+  - the PIN: set, locked prayer list, wrong PIN, hint, right PIN, relock after time away, turn off.

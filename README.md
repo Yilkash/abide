@@ -6,6 +6,8 @@ Live: https://yilkash.github.io/abide/
 
 - **Today:**
   - A word for the day with a meditation prompt.
+  - Round shortcuts: Read, Speak it, Pray, Journal.
+  - **Speak it:** a healing declaration for the day, in the first person, with its scripture. Read it aloud, mark it declared, and keep a streak. All 15 declarations are in More → Speak it.
   - Today's reading split into morning, afternoon and night, with a prayer for each.
   - The fasting card on fasting days.
   - Progress, streak, and whether you're on track.
@@ -24,3 +26,5 @@ Live: https://yilkash.github.io/abide/
   - Settings: backup and restore.
 
 Everything is stored on the phone only. Scripture: King James Version (public domain).
+
+**Privacy:** set a 4-digit PIN in Settings to lock your prayer list, journal and dreams. Everything stays on your phone.
