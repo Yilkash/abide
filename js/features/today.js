@@ -25,6 +25,7 @@ Object.assign(VIEWS, {
     const msg = messageOfDay();
     const prayingFor = isLocked() ? "" : prayers.filter((p) => !p.answered).slice(0, 3).map((p) => esc(p.who)).join(", ");
     const dec = declarationOfDay(), decDone = declaredToday().length > 0;
+    const tday = teachingOfDay(), tDone = !!teach.studied[tday.id];
     const el = main(`
       <div style="height:12px"></div>
       <div class="hero">
@@ -41,6 +42,8 @@ Object.assign(VIEWS, {
       </div>
       <div class="h"><span>Speak it today</span><button data-go="declare">All declarations</button></div>
       <div class="card tap" id="decToday"><div class="verse-card decl-row"><div class="say">${esc(dec.say)}</div><div class="vr" style="margin-top:6px"><b>${esc(dec.v.ref)}</b>${decDone ? '<span class="tag ok">Declared</span>' : '<button class="btn small primary" id="decGo">Speak it</button>'}</div></div></div>
+      <div class="h"><span>Healing teaching</span><button data-go="teachings">All teachings</button></div>
+      <div class="card pad tap" id="teachToday" style="display:flex;align-items:center;gap:12px"><div style="width:42px;height:42px;border-radius:12px;background:var(--surface-2);color:var(--brand);display:grid;place-items:center">${ICONS.leaf}</div><div style="flex:1;min-width:0"><b>${esc(tday.title)}${tDone ? " ✓" : ""}</b><div class="muted" style="font-size:13px">${esc(tday.act)}</div></div><span class="chev">${ICONS.chev}</span></div>
       ${new Date().getHours() < 10 && !dreams.some((d) => d.created?.slice(0, 10) === t) ? `<div class="card pad tap" id="dreamNow" style="display:flex;align-items:center;gap:12px;margin-top:12px"><div style="width:42px;height:42px;border-radius:12px;background:var(--surface-2);color:var(--brand);display:grid;place-items:center">${ICONS.night}</div><div style="flex:1"><b>Had a dream last night?</b><div class="muted" style="font-size:13px">Write it down before it fades</div></div><span class="chev">${ICONS.chev}</span></div>` : ""}
       ${(() => { const bi = kindInfo(t), bs = body.sessions[t] || {}; const bd = bi.kind === "strength" ? (bs.rounds || 0) >= ROUNDS : !!bs.done;
         return `<div class="card pad tap" id="bodyToday" style="display:flex;align-items:center;gap:12px;margin-top:12px"><div style="width:42px;height:42px;border-radius:12px;background:var(--surface-2);color:var(--brand);display:grid;place-items:center">${ICONS.dumbbell}</div><div style="flex:1;min-width:0"><b>${bi.title}${bd ? " ✓" : ""}</b><div class="muted" style="font-size:13px">${bi.kind === "strength" && !bd ? `${bs.rounds || 0} of ${ROUNDS} rounds` : bd ? "Done for today" : "Body · today's training"}</div></div><span class="chev">${ICONS.chev}</span></div>`; })()}
@@ -79,6 +82,7 @@ Object.assign(VIEWS, {
     fillVerses([v, med], el);
     $("dreamNow") && ($("dreamNow").onclick = () => newDream());
     $("decToday").onclick = () => go("declare");
+    $("teachToday").onclick = () => go("teaching", { id: tday.id });
     $("bodyToday").onclick = () => go("body");
     el.querySelectorAll("[data-sc]").forEach((b) => (b.onclick = () => {
       if (b.dataset.sc !== "read") return go(b.dataset.sc);

@@ -12,6 +12,7 @@ Object.assign(VIEWS, {
       ["lessons", "people", "Sunday school", `${lessons.length} lesson${lessons.length === 1 ? "" : "s"} prepared`],
       ["body", "dumbbell", "Body", "Training plan, back to the ball, waist and foods"],
       ["declare", "speak", "Speak it", `${DECLARATIONS.length} healing declarations · ${declareStreak()} day${declareStreak() === 1 ? "" : "s"} in a row`],
+      ["teachings", "leaf", "Healing teachings", `T.L. Osborn's Healing the Sick · ${Object.keys(teach.studied).length} of ${TEACHINGS.length} studied`],
       ["settings", "gear", "Settings", "Name, PIN lock, reminders, text size, backup"],
     ];
     const el = main(`<div style="height:12px"></div><div class="card">${items.map(([v, ic, t, s]) => `

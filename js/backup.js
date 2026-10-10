@@ -1,5 +1,5 @@
 /* ---------- backup ---------- */
-const KEYS = ["settings", "pre", "read", "dreams", "days", "log", "fasts", "prayers", "journal", "lessons", "favs", "saved", "start", "declared", "body"];
+const KEYS = ["settings", "pre", "read", "dreams", "days", "log", "fasts", "prayers", "journal", "lessons", "favs", "saved", "start", "declared", "body", "teach"];
 function backup() {
   const data = { app: "abide", at: new Date().toISOString() };
   for (const k of KEYS) data[k] = load(k, null);

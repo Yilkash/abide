@@ -16,6 +16,7 @@ const FILES = [
   "js/features/lock.js",
   "js/features/today.js",
   "js/features/declare.js",
+  "js/features/teachings.js",
   "js/features/body.js",
   "js/features/bible.js",
   "js/features/word.js",

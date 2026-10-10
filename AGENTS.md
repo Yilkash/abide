@@ -25,6 +25,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - `fasts`: date → `{done, focus, note}`.
   - `dreams`: `[{id, date, title, text, feelings[], tags[], meaning, scripture, status: new|praying|fulfilled, fulfilledAt, fulfilledNote, created, updated}]`. Empty dreams are dropped when leaving the editor.
   - `prayers`, `journal`, `lessons`, `favs`, `saved`, `start`, `theme`, `tab`.
+  - `teach`: `{notes, studied}` for the healing teachings.
   - `declared`: date → refs of the healing declarations spoken that day ("Speak it").
   - `body`: `{stage 0–4, stageSince, sessions: date → {kind, rounds?, done?}, pain: date → 0–10, waist: [{date, cm}], calm: [], avoid: []}` (Body section; private).
   - `lock`: `{salt, hash, hint}` for the optional PIN (SHA-256 of salt + PIN). **Never** included in backups.
@@ -49,6 +50,12 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 
 - `DECLARATIONS` pairs a first-person declaration (our wording) with a verse from the verified `Healing` theme, looked up by ref, so scripture text is never typed by hand. If a ref is missing from the theme, that declaration is dropped.
 - The `declare` view: today's declaration (rotates by day), read aloud with `speechSynthesis` (declaration, then the verse), "I declared it", a streak, and the full list. Today shows it under the round shortcuts.
+
+## Healing teachings (v10)
+
+- `js/features/teachings.js`: `TEACHINGS`, 14 main points of T.L. Osborn's *Healing the Sick*, **summarised in our own words**. The book is under copyright: never copy its text, chapter titles or long quotes into the app.
+- Each teaching lists scripture by reference only. `bibleVerse(ref)` builds the verse from `kjv.json` at runtime (the NIV fills in through `fillVerses` as usual), so no scripture is typed by hand. `findVerse` falls back to it, so Meditate works on these verses too.
+- Saved in `teach`: `{notes: id -> text, studied: id -> date}`; included in backups. Today shows the teaching of the day under "Speak it today"; More → Healing teachings lists them all.
 
 ## PIN lock (v8)
 

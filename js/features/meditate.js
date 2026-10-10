@@ -1,6 +1,6 @@
 // Meditation: one verse a day from the Meditation collection, and a guided screen for any verse.
 const meditationOfDay = () => { const list = DATA.themes["Meditation"]; return list[(dayNumber() * 7) % list.length]; };
-const findVerse = (ref) => allVerses.find((v) => v.ref === ref);
+const findVerse = (ref) => allVerses.find((v) => v.ref === ref) || bibleVerse(ref);
 const wireMeditate = (el) => el.querySelectorAll("[data-meditate]").forEach((b) => (b.onclick = () => go("meditate", { ref: b.dataset.meditate })));
 const MEDITATE_STEPS = [
   ["Be still", "Breathe slowly. Invite the Holy Spirit: \"Speak, Lord, for Your servant is listening.\" (1 Samuel 3:9)"],
