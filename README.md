@@ -27,4 +27,6 @@ Live: https://yilkash.github.io/abide/
 
 Everything is stored on the phone only. Scripture: King James Version (public domain).
 
-**Privacy:** set a 4-digit PIN in Settings to lock your prayer list, journal and dreams. Everything stays on your phone.
+- **Body:** a weekly training plan around your fasting days, a home strength workout with a rest timer that grows with you, a step-by-step walk/jog plan back to football, pain after exercise, a weekly waist log and your own food lists.
+
+**Privacy:** set a 4-digit PIN in Settings to lock your prayer list, journal, dreams and Body. Everything stays on your phone.

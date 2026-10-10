@@ -21,6 +21,7 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - `dreams`: `[{id, date, title, text, feelings[], tags[], meaning, scripture, status: new|praying|fulfilled, fulfilledAt, fulfilledNote, created, updated}]`. Empty dreams are dropped when leaving the editor.
   - `prayers`, `journal`, `lessons`, `favs`, `saved`, `start`, `theme`, `tab`.
   - `declared`: date → refs of the healing declarations spoken that day ("Speak it").
+  - `body`: `{stage 0–4, stageSince, sessions: date → {kind, rounds?, done?}, pain: date → 0–10, waist: [{date, cm}], calm: [], avoid: []}` (Body section; private).
   - `lock`: `{salt, hash, hint}` for the optional PIN (SHA-256 of salt + PIN). **Never** included in backups.
   - Backup/restore in Settings exports and imports these keys as JSON.
 - **Never rename or reshape these keys without a migration.** They hold real progress.
@@ -49,6 +50,14 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
 - Optional, set in Settings → Privacy. It locks `PRIVATE` = prayer list, journal and dreams; `render()` sends those views to the `lock` view until the PIN is entered. The Today screen hides prayer names while locked.
 - It relocks after 2 minutes in the background or on reload. Five wrong tries wait 30 seconds. "Forgot PIN?" shows the hint, then offers to remove the lock **and delete** the private pages.
 - It keeps a casual look away; it is not encryption (localStorage is readable with developer tools).
+
+## Body (v9)
+
+- More → Body (and a card on Today), behind the PIN. A weekly plan built around the fasting days (`dayKind`): Mon/Thu strength, Tue/Sat walk or jog (Sat adds ball work), fast days gentle, Sun rest; a Wed or Fri that isn't a fast day becomes an easy walk or stretching.
+- Strength: `MOVES` × `ROUNDS` (3) with a 60-second rest timer; every two finished workouts raise the level (+2 reps, wall sit +5 s, max level 11).
+- "Back to the ball": five walk/jog `STAGES`; she moves on after a pain-free week or steps back.
+- Pain after exercise (0–10, last 14 days), a weekly waist log with a line, and two food lists she types herself. **Never put the owner's personal food or health details in the code or docs; the repo is public.**
+- Reminders: Settings → "Include my training days" adds `abide-body` (Mon/Tue/Thu/Sat minus fast days) at `settings.bodyTime` (default 5pm).
 
 ## Look (v8)
 
@@ -91,4 +100,5 @@ Notes for whoever works on this app next, human or AI agent. Read README.md for 
   - reload persistence;
   - the full-plan simulation finishes 1189/1189;
   - Speak it (read aloud with a mocked `speechSynthesis`, declare, streak);
+  - Body: strength rounds and rest timer, level-up, fast day, Saturday ball day, waist, foods, steps, reminders;
   - the PIN: set, locked prayer list, wrong PIN, hint, right PIN, relock after time away, turn off.
